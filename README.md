@@ -22,5 +22,5 @@ Building a **machine learning** model on the **Home Credit Default Risk** datase
 > 📄 Still under development — see the project README for more.
 
 ### 📜 [Han-Nom OCR/NLP]
-Applied **AI-powered OCR & NLP** to recognize and process Han-Nom (chữ Hán Nôm) script — exploring how AI tools can be leveraged for niche language/text recognition tasks.
+Applied **AI-powered OCR & NLP** to recognize and process Han-Nom (chữ Hán Nôm) script — exploring how AI tools can be leveraged for niche language/image recognition tasks.
 > 📄 See the project README for implementation details.
