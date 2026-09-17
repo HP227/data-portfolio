@@ -101,7 +101,6 @@ SELECT DISTINCT order_country FROM staging_raw_orders
 WHERE order_country LIKE '%[^a-zA-Z0-9 ,.\-()'']%'
 
 -- Kiem tra 2 cap cot "trung nhau"
--- 03_dimension_etl.sql chay FK insert
 SELECT COUNT(*) AS mismatch_category
 FROM staging_raw_orders WHERE category_id <> product_category_id;   -- ky vong = 0
 
