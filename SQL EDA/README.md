@@ -17,7 +17,7 @@ CSV --> staging_raw_orders --> validate --> dim_* / fact_* (star schema) --> que
   - `fact_orders` — grain: 1 dòng / 1 order
   - `fact_order_items` — grain: 1 dòng / 1 line item
 
-## Thứ tự chạy file (bắt buộc)
+## Thứ tự chạy file
 
 | # | File | Mục đích |
 |---|------|----------|
@@ -33,15 +33,10 @@ Chạy tuần tự đúng thứ tự 00 → 05 vì có ràng buộc khóa ngoạ
 ## Cách chạy
 1. Sửa đường dẫn CSV thực tế trong `00_staging.sql` (mục `BULK INSERT ... FROM`).
 2. Chạy lần lượt từng file theo thứ tự bảng trên bằng SSMS (hoặc Azure Data Studio).
-3. Sau mỗi bước ETL, kiểm tra các câu SELECT validation đi kèm (kỳ vọng = 0 dòng lệch/orphan).
+3. Sau mỗi bước ETL, kiểm tra các câu SELECT validation đi kèm (kỳ vọng = 0 dòng lệch).
 4. Chạy `05_Query_insight.sql` để lấy kết quả phân tích, hoặc kết nối SQL Server này làm nguồn cho Power BI.
 
 ## Lưu ý dữ liệu quan trọng
 - `order_zipcode` thiếu (~86% NULL) → các JOIN liên quan đến `dim_order_location` đều xử lý NULL-safe.
 - Hai cột `benefit_per_order` và `order_profit_per_order` trong dataset gốc **lặp lại theo order** (không phải theo item). Khi cần tổng lợi nhuận theo order, phải `SELECT DISTINCT order_id, ...` trước khi `SUM`, tránh nhân đôi số item.
 - Các query loại trừ `CANCELED` / `SUSPECTED_FRAUD` khi tính doanh thu/AOV/phân khúc khách hàng — cần áp dụng nhất quán cho mọi query đo hiệu suất kinh doanh.
-
-## Known issues / TODO
-- [ ] `dim_customer.login_type`: cột chưa được ETL populate, hiện luôn NULL — cân nhắc bỏ hoặc bổ sung nguồn dữ liệu.
-- [ ] Query "Top N sản phẩm bán chạy nhất" trong `05_Query_insight.sql` thiếu JOIN `fact_orders` trước khi filter `order_status` — cần bổ sung JOIN.
-- [ ] Rà soát lại tất cả query insight để đảm bảo tiêu chí loại trừ đơn hủy/gian lận nhất quán.
