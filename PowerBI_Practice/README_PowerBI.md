@@ -4,6 +4,18 @@ Dashboard phân tích chuỗi cung ứng, xây dựng trên dữ liệu đã qua
 `DataCoSupplyChainDataset.csv` vào SQL Server (star schema — xem
 `README.md` ở phần SQL để biết chi tiết pipeline).
 
+## Insight chính từ Dashboard
+- **Vận hành:** First Class có tỷ lệ trễ giao hàng cao nhất (95.27%), cao hơn
+  hẳn Standard Class (38.13%).
+- **Khách hàng:** Nhóm At Risk chỉ chiếm 41% khách hàng nhưng tạo ra ~70%
+  doanh thu — ưu tiên chiến dịch win-back cho nhóm này.
+- **Khách hàng:** 56.98% khách là Repeat, 43.02% chỉ mua 1 lần.
+- **Doanh thu:** Ổn định quanh $1M/tháng suốt 2015–2017, riêng 4 tháng cuối
+  dataset có bất thường về cấu trúc dữ liệu (xem mục 4a), không phản ánh xu
+  hướng kinh doanh thật.
+- **Segment:** Consumer/Corporate/Home Office không khác biệt về hành vi mua
+  sắm — chỉ khác tỷ trọng quy mô.
+
 ## 1. Nguồn dữ liệu & Mô hình dữ liệu
 
 - **Kết nối:** SQL Server (Import mode), lấy từ 7 bảng: `fact_orders`,
@@ -54,12 +66,3 @@ gần như giống hệt nhau giữa 3 segment — segment chỉ phản ánh **t
 mô** (~52/30/18%), không phải đặc điểm hành vi khác biệt. → Ưu tiên dùng
 **RFM** (tính từ hành vi mua thật) làm căn cứ chiến dịch marketing, không
 dùng nhãn Segment có sẵn.
-
-## 5. Cách cập nhật dữ liệu (Refresh)
-
-1. Đảm bảo pipeline SQL (`00` → `04`) đã chạy xong, dữ liệu mới đã nạp vào
-   `fact_orders`/`fact_order_items`.
-2. Trong Power BI Desktop: **Home → Refresh**.
-3. Nếu đổi cấu trúc bảng SQL (thêm/xoá cột), vào **Transform data** để cập
-   nhật lại query, sau đó kiểm tra lại toàn bộ Measures/Relationships có bị
-   gãy không trước khi publish.
