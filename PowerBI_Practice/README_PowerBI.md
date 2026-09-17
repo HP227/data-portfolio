@@ -27,7 +27,7 @@ Dashboard phân tích chuỗi cung ứng, xây dựng trên dữ liệu đã qua
 
 ## 3. Danh sách Measures (DAX) chính
 
-| Measure | Công thức tóm tắt | Dùng ở trang |
+| Measure | Công thức tóm tắt |
 |---|---|---|
 | `Total Sales` | `SUM(fact_order_items[sales])` |
 | `Total Orders` | `DISTINCTCOUNT(fact_orders[order_id])` | 
