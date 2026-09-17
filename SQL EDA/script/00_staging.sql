@@ -74,7 +74,7 @@ GO
    (SQL Server 2017+) giup xu ly dung cac truong co dau ngoac kep.
    ============================================================ */
 BULK INSERT staging_raw_orders
-FROM 'C:\Users\Ha Phuong\Documents\2. Practice\SQL\Project\Data-Portfolio\SQL EDA\datasets\DataCoSupplyChainDataset.csv'  --- Nhập đường dẫn thực tế
+FROM ''  --- Nhập đường dẫn thực tế
 WITH (
     FIRSTROW      = 2,
     FORMAT        = 'CSV',
