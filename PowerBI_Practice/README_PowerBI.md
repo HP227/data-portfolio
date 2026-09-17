@@ -38,7 +38,7 @@ Dashboard phân tích chuỗi cung ứng, xây dựng trên dữ liệu đã qua
 | `Total Profit` / `Profit Margin %` | `SUM(benefit_per_order)` / chia `Total Sales` |
 | `Repeat Customer Rate` | % khách có `Frequency > 1` |
 
-## 4. ⚠️ Giới hạn dữ liệu quan trọng — đọc trước khi diễn giải số liệu
+## 4. ⚠️ Giới hạn dữ liệu quan trọng
 
 **a) 4 tháng cuối dataset (10/2017 – 01/2018) có cấu trúc dữ liệu khác biệt bất thường.**
 Từ tháng 11/2017, mỗi đơn hàng luôn chỉ có đúng 1 item với số lượng = 1
